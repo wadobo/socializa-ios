@@ -66,3 +66,8 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+/Socializa/Socializa/.DS_Store
+/Socializa/Socializa/Assets.xcassets/.DS_Store
+/Socializa/Socializa.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+/Socializa/Socializa.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+/Socializa/Socializa.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
