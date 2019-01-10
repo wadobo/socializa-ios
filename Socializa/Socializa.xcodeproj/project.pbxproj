@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D02105221E90A6F00C93773 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105121E90A6F00C93773 /* MainNavigationController.swift */; };
+		1D02105421E9213100C93773 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105321E9213100C93773 /* HomeViewController.swift */; };
+		1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105521E925AE00C93773 /* UserDefaults+helper.swift */; };
 		1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18350C21E7596B008A2B7E /* AppDelegate.swift */; };
-		1D18350F21E7596B008A2B7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18350E21E7596B008A2B7E /* ViewController.swift */; };
-		1D18351221E7596B008A2B7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351021E7596B008A2B7E /* Main.storyboard */; };
+		1D18350F21E7596B008A2B7E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18350E21E7596B008A2B7E /* LoginViewController.swift */; };
 		1D18351421E7596C008A2B7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351321E7596C008A2B7E /* Assets.xcassets */; };
 		1D18351721E7596C008A2B7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */; };
 		1D18352221E7596C008A2B7E /* SocializaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18352121E7596C008A2B7E /* SocializaTests.swift */; };
@@ -26,10 +28,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D02105121E90A6F00C93773 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		1D02105321E9213100C93773 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		1D02105521E925AE00C93773 /* UserDefaults+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+helper.swift"; sourceTree = "<group>"; };
 		1D18350921E7596B008A2B7E /* Socializa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socializa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D18350C21E7596B008A2B7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1D18350E21E7596B008A2B7E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1D18351121E7596B008A2B7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1D18350E21E7596B008A2B7E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		1D18351321E7596C008A2B7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D18351621E7596C008A2B7E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D18351821E7596C008A2B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,8 +82,10 @@
 			isa = PBXGroup;
 			children = (
 				1D18350C21E7596B008A2B7E /* AppDelegate.swift */,
-				1D18350E21E7596B008A2B7E /* ViewController.swift */,
-				1D18351021E7596B008A2B7E /* Main.storyboard */,
+				1D02105121E90A6F00C93773 /* MainNavigationController.swift */,
+				1D18350E21E7596B008A2B7E /* LoginViewController.swift */,
+				1D02105321E9213100C93773 /* HomeViewController.swift */,
+				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
@@ -179,7 +185,6 @@
 			files = (
 				1D18351721E7596C008A2B7E /* LaunchScreen.storyboard in Resources */,
 				1D18351421E7596C008A2B7E /* Assets.xcassets in Resources */,
-				1D18351221E7596B008A2B7E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,8 +202,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D18350F21E7596B008A2B7E /* ViewController.swift in Sources */,
+				1D18350F21E7596B008A2B7E /* LoginViewController.swift in Sources */,
+				1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */,
 				1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */,
+				1D02105221E90A6F00C93773 /* MainNavigationController.swift in Sources */,
+				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,14 +229,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1D18351021E7596B008A2B7E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1D18351121E7596B008A2B7E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -367,7 +367,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.Socializa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.socializa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -385,7 +385,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.Socializa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.socializa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
