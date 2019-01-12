@@ -71,3 +71,4 @@ fastlane/test_output
 /Socializa/Socializa.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 /Socializa/Socializa.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 /Socializa/Socializa.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+*.DS_Store
