@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didPressSignOut() {
-        UserDefaults.standard.setIsLoggedIn(value: false)
         delegate?.signedOut()
     }
 }

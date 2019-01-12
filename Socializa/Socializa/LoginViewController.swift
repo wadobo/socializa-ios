@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 protocol LoginViewControllerDelegate: class {
     func finishLoggingIn()
 }
 
 class LoginViewController: UIViewController {
+    var facebookProfile: [String:String]?
+    
     let logoView: UIImageView = {
         let logoView = UIImageView(image: UIImage(named: "logo"))
         logoView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,14 +71,31 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        
+        facebookProfile = nil
         setupLayout()
     }
     
     @objc func didPressFacebookButton() {
-        dismiss(animated: true, completion: nil)
-        UserDefaults.standard.setIsLoggedIn(value: true)
-        delegate?.finishLoggingIn()
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+        
+            guard let resultUnwrapped = result else {
+                return
+            }
+            
+            guard !resultUnwrapped.isCancelled else {
+                return
+            }
+            
+            self.setFacebookProfile(tokenString: resultUnwrapped.token.tokenString)
+            self.dismiss(animated: true, completion: nil)
+            UserDefaults.standard.setIsLoggedIn(value: true)
+            self.delegate?.finishLoggingIn()
+        }
+        
     }
     
     @objc func didPressGoogleButton() {
@@ -128,5 +148,23 @@ extension LoginViewController {
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
+    }
+    
+    func setFacebookProfile(tokenString: String) {
+        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"])?.start(completionHandler: { (connection, result, error) in
+            if error != nil {
+                let _ = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
+                return
+            }
+            
+            guard let resultUnwrapped = result else {
+                return
+            }
+            
+            self.facebookProfile = (resultUnwrapped as! [String:String])
+            self.facebookProfile?["tokenString"] = tokenString
+            
+            print(self.facebookProfile ?? "")
+        })
     }
 }

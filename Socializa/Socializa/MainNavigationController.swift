@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class MainNavigationController: UINavigationController, LoginViewControllerDelegate, HomeViewControllerDelegate {
     override func viewDidLoad() {
@@ -40,6 +41,8 @@ class MainNavigationController: UINavigationController, LoginViewControllerDeleg
     }
     
     func signedOut() {
+        FBSDKLoginManager().logOut()
+        UserDefaults.standard.setIsLoggedIn(value: false)
         viewControllers = []
         showLoginController()
     }
