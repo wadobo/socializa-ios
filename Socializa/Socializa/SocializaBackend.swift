@@ -61,20 +61,21 @@ final class SocializaBackend {
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
-                completion(nil, error)
+                DispatchQueue.main.async { completion(nil, error) }
                 return
             }
             
             guard let responseData = data else {
-                completion(nil, SocializaError.emptyResponse(url: url))
+                DispatchQueue.main.async { completion(nil, SocializaError.emptyResponse(url: url)) }
                 return
             }
             
             do {
                 let result = try JSONDecoder().decode(U.self, from: responseData)
-                completion(result, nil)
+                DispatchQueue.main.async { completion(result, nil) }
             } catch {
                 completion(nil, error)
+                DispatchQueue.main.async { completion(nil, error) }
             }
         }.resume()
     }
