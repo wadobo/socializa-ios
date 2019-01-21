@@ -74,7 +74,6 @@ final class SocializaBackend {
                 let result = try JSONDecoder().decode(U.self, from: responseData)
                 DispatchQueue.main.async { completion(result, nil) }
             } catch {
-                completion(nil, error)
                 DispatchQueue.main.async { completion(nil, error) }
             }
         }.resume()
