@@ -13,7 +13,7 @@ protocol HomeViewControllerDelegate: class {
 }
 
 class HomeViewController: UIViewController {
-    var delegate: HomeViewControllerDelegate?
+    weak var delegate: HomeViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

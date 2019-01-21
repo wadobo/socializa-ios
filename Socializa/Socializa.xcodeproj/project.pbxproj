@@ -15,6 +15,9 @@
 		1D18351421E7596C008A2B7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351321E7596C008A2B7E /* Assets.xcassets */; };
 		1D18351721E7596C008A2B7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */; };
 		1D18352221E7596C008A2B7E /* SocializaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18352121E7596C008A2B7E /* SocializaTests.swift */; };
+		1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */; };
+		1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698621ECAF4200719CFA /* ImageButton.swift */; };
+		1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */; };
 		4AF791332431D9C54A89D009 /* Pods_Socializa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1820EF7F8C3FE9D755287C /* Pods_Socializa.framework */; };
 		A1216FFB7DAE67DEEDABCC47 /* Pods_SocializaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51E2F1683D30144C99EE19F7 /* Pods_SocializaTests.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,9 @@
 		1D18352121E7596C008A2B7E /* SocializaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaTests.swift; sourceTree = "<group>"; };
 		1D18352321E7596C008A2B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4646E021EA00F400862D0C /* Socializa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Socializa.entitlements; sourceTree = "<group>"; };
+		1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaBackend.swift; sourceTree = "<group>"; };
+		1DFD698621ECAF4200719CFA /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
+		1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+helper.swift"; sourceTree = "<group>"; };
 		2502A785E7B822B763C807E8 /* Pods-SocializaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocializaTests/Pods-SocializaTests.release.xcconfig"; sourceTree = "<group>"; };
 		39EDD285A96EB0ADD54298CA /* Pods-Socializa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Socializa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Socializa/Pods-Socializa.debug.xcconfig"; sourceTree = "<group>"; };
 		51E2F1683D30144C99EE19F7 /* Pods_SocializaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SocializaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,10 +114,13 @@
 				1D02105121E90A6F00C93773 /* MainNavigationController.swift */,
 				1D18350E21E7596B008A2B7E /* LoginViewController.swift */,
 				1D02105321E9213100C93773 /* HomeViewController.swift */,
+				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
 				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
+				1DFD698621ECAF4200719CFA /* ImageButton.swift */,
+				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
 			);
 			path = Socializa;
 			sourceTree = "<group>";
@@ -319,10 +328,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */,
 				1D18350F21E7596B008A2B7E /* LoginViewController.swift in Sources */,
 				1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */,
 				1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */,
 				1D02105221E90A6F00C93773 /* MainNavigationController.swift in Sources */,
+				1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */,
+				1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */,
 				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

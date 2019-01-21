@@ -12,10 +12,10 @@ import FBSDKLoginKit
 class MainNavigationController: UINavigationController, LoginViewControllerDelegate, HomeViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        setupViewControllers()
         
-        if isLoggedIn() {
-            setupViewControllers()
-        } else {
+        if !isLoggedIn() {
             perform(#selector(showLoginController), with: nil, afterDelay: 0)
         }
     }
@@ -37,13 +37,13 @@ class MainNavigationController: UINavigationController, LoginViewControllerDeleg
     }
     
     func finishLoggingIn() {
-        setupViewControllers()
+        let accessToken = UserDefaults.standard.getAccessToken()!
+        print("access token: \(accessToken.access_token)")
     }
     
     func signedOut() {
         FBSDKLoginManager().logOut()
-        UserDefaults.standard.setIsLoggedIn(value: false)
-        viewControllers = []
+        UserDefaults.standard.clearAccessToken()
         showLoginController()
     }
 }

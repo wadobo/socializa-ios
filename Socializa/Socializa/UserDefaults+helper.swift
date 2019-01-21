@@ -10,15 +10,37 @@ import Foundation
 
 extension UserDefaults {
     enum UserDefaultsKeys: String {
-        case isLoggedIn
-    }
-    
-    func setIsLoggedIn(value: Bool) {
-        set(value, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
-        synchronize()
+        case accessToken
+        case tokenType
+        case refreshToken
     }
     
     func isLoggedIn() -> Bool {
-        return bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+        return getAccessToken() != nil
+    }
+    
+    func setAccessToken(token: SocializaBackend.SocializaAccessToken) {
+        set(token.access_token, forKey: UserDefaultsKeys.accessToken.rawValue)
+        set(token.refresh_token, forKey: UserDefaultsKeys.refreshToken.rawValue)
+        set(token.token_type, forKey: UserDefaultsKeys.tokenType.rawValue)
+        synchronize()
+    }
+    
+    func clearAccessToken() {
+        removeObject(forKey: UserDefaultsKeys.accessToken.rawValue)
+        removeObject(forKey: UserDefaultsKeys.refreshToken.rawValue)
+        removeObject(forKey: UserDefaultsKeys.tokenType.rawValue)
+    }
+    
+    func getAccessToken() -> SocializaBackend.SocializaAccessToken? {
+        guard let at = string(forKey: UserDefaultsKeys.accessToken.rawValue) else {
+            return nil
+        }
+        
+        return SocializaBackend.SocializaAccessToken(
+            access_token: at,
+            token_type: string(forKey: UserDefaultsKeys.tokenType.rawValue)!,
+            refresh_token: string(forKey: UserDefaultsKeys.refreshToken.rawValue)!
+        )
     }
 }

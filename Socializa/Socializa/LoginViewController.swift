@@ -14,71 +14,22 @@ protocol LoginViewControllerDelegate: class {
 }
 
 class LoginViewController: UIViewController {
-    var facebookProfile: [String:String]?
+    let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
+    let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))
     
-    let logoView: UIImageView = {
-        let logoView = UIImageView(image: UIImage(named: "logo"))
-        logoView.translatesAutoresizingMaskIntoConstraints = false
-        logoView.contentMode = .scaleAspectFit
-        return logoView
-    }()
-    
-    let descriptionView: UITextView = {
-        let textView = UITextView()
-        textView.isEditable = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let attributedText = NSMutableAttributedString(
-            string: "Socializa",
-            attributes: [
-                NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 40)
-            ]
-        )
-        
-        attributedText.append(NSAttributedString(
-            string: "\nThe world is the board game!",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30),
-                NSAttributedString.Key.foregroundColor: UIColor.gray
-            ]
-        ))
-        textView.attributedText = attributedText
-        textView.textAlignment = .center
-        return textView
-    }()
-    
-    let facebookButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named: "facebook_icon"), for: .normal)
-        btn.imageView?.contentMode = .scaleAspectFit
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.addTarget(self, action: #selector(didPressFacebookButton), for: .touchUpInside)
-        return btn
-    }()
-    
-    let googleButton: UIButton = {
-        let btn = UIButton()
-        btn.setImage(UIImage(named: "google_icon"), for: .normal)
-        btn.imageView?.contentMode = .scaleAspectFit
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.addTarget(self, action: #selector(didPressGoogleButton), for: .touchUpInside)
-        return btn
-    }()
-
     weak var delegate: LoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        facebookProfile = nil
         setupLayout()
     }
     
-    @objc func didPressFacebookButton() {
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { (result, error) in
+    @objc func handleFacebookLogin() {
+        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { [unowned self] (result, error) in
             if error != nil {
-                print(error!)
+                print("login error: \(error!)")
                 return
             }
         
@@ -90,21 +41,71 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.setFacebookProfile(tokenString: resultUnwrapped.token.tokenString)
-            self.dismiss(animated: true, completion: nil)
-            UserDefaults.standard.setIsLoggedIn(value: true)
-            self.delegate?.finishLoggingIn()
+            self.socializaLogIn(tokenString: resultUnwrapped.token.tokenString)
         }
         
     }
     
-    @objc func didPressGoogleButton() {
+    func socializaLogIn(tokenString: String) {
+        SocializaBackend.shared.convertToken(tokenString, platform: .facebook) { [unowned self] (result, error) in
+            if let error = error {
+                self.showErrorAlert(message: "An error has occurred: \(error.localizedDescription)")
+                print(error)
+                return
+            }
+            
+            guard let result = result else {
+                self.showErrorAlert(message: "Empty response")
+                return
+            }
+
+            UserDefaults.standard.setAccessToken(token: result)
+            self.dismiss(animated: true, completion: nil)
+            self.delegate?.finishLoggingIn()
+        }
+    }
+
+    @objc func handleGoogleLogin() {
         print("google login")
     }
 }
 
+
+
+// MARK: Layout setup
 extension LoginViewController {
-    private func setupLayout() {
+    fileprivate func setupLayout() {
+        let logoView: UIImageView = {
+            let logoView = UIImageView(image: UIImage(named: "logo"))
+            logoView.translatesAutoresizingMaskIntoConstraints = false
+            logoView.contentMode = .scaleAspectFit
+            return logoView
+        }()
+        
+        let descriptionView: UITextView = {
+            let textView = UITextView()
+            textView.isEditable = false
+            textView.translatesAutoresizingMaskIntoConstraints = false
+            
+            let attributedText = NSMutableAttributedString(
+                string: "Socializa",
+                attributes: [
+                    NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 40)
+                ]
+            )
+            
+            attributedText.append(NSAttributedString(
+                string: "\nThe world is the board game!",
+                attributes: [
+                    NSAttributedString.Key.font: UIFont.systemFont(ofSize: 30),
+                    NSAttributedString.Key.foregroundColor: UIColor.gray
+                ]
+            ))
+            textView.attributedText = attributedText
+            textView.textAlignment = .center
+            return textView
+        }()
+        
         let topLogoContainerView = UIView()
         view.addSubview(topLogoContainerView)
         topLogoContainerView.translatesAutoresizingMaskIntoConstraints = false
@@ -127,16 +128,16 @@ extension LoginViewController {
         let leftView = UIView()
         let rightView = UIView()
         
-        leftView.addSubview(facebookButton)
-        rightView.addSubview(googleButton)
+        leftView.addSubview(facebookLoginButton)
+        rightView.addSubview(googleLoginButton)
         
-        facebookButton.heightAnchor.constraint(equalTo: leftView.heightAnchor).isActive = true
-        facebookButton.centerXAnchor.constraint(equalTo: leftView.centerXAnchor).isActive = true
-        facebookButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        facebookLoginButton.heightAnchor.constraint(equalTo: leftView.heightAnchor).isActive = true
+        facebookLoginButton.centerXAnchor.constraint(equalTo: leftView.centerXAnchor).isActive = true
+        facebookLoginButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
-        googleButton.heightAnchor.constraint(equalTo: rightView.heightAnchor).isActive = true
-        googleButton.centerXAnchor.constraint(equalTo: rightView.centerXAnchor).isActive = true
-        googleButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        googleLoginButton.heightAnchor.constraint(equalTo: rightView.heightAnchor).isActive = true
+        googleLoginButton.centerXAnchor.constraint(equalTo: rightView.centerXAnchor).isActive = true
+        googleLoginButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [leftView, rightView])
         view.addSubview(stackView)
@@ -148,23 +149,5 @@ extension LoginViewController {
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-    }
-    
-    func setFacebookProfile(tokenString: String) {
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"])?.start(completionHandler: { (connection, result, error) in
-            if error != nil {
-                let _ = UIAlertController(title: "Error", message: error!.localizedDescription, preferredStyle: .alert)
-                return
-            }
-            
-            guard let resultUnwrapped = result else {
-                return
-            }
-            
-            self.facebookProfile = (resultUnwrapped as! [String:String])
-            self.facebookProfile?["tokenString"] = tokenString
-            
-            print(self.facebookProfile ?? "")
-        })
     }
 }
