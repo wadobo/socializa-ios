@@ -46,8 +46,7 @@ class MainNavigationController: UINavigationController, LoginViewControllerDeleg
     
     func signedOut() {
         viewControllers = []
-        FBSDKLoginManager().logOut()
-        UserDefaults.standard.clearAccessToken()
+        Auth.sharedInstance.signOut()
         showLoginController()
     }
 }
