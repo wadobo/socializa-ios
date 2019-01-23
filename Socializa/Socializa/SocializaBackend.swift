@@ -22,6 +22,11 @@ final class SocializaBackend {
         var token_type: String
         var refresh_token: String
     }
+    
+    struct ErrorResponse: Decodable {
+        let error: String
+        let error_description: String
+    }
 
     enum Platform: String {
         case facebook
@@ -75,7 +80,15 @@ final class SocializaBackend {
                 let result = try JSONDecoder().decode(U.self, from: responseData)
                 DispatchQueue.main.async { completion(result, nil) }
             } catch {
-                DispatchQueue.main.async { completion(nil, error) }
+                var fetchError = error
+                
+                // try to parse an error response from backend
+                // if parse fails lets respond with the original decode error
+                let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: responseData)
+                if let error = errorResponse {
+                    fetchError = SocializaError.responseError(error: error.error, description: error.error_description)
+                }
+                DispatchQueue.main.async { completion(nil, fetchError) }
             }
         }.resume()
     }
