@@ -35,12 +35,15 @@ class Auth: NSObject, GIDSignInDelegate {
 
     static let sharedInstance = Auth()
     
-    var delegate: AuthDelegate?
+    weak var delegate: AuthDelegate? {
+        didSet {
+            GIDSignIn.sharedInstance()?.uiDelegate = delegate
+        }
+    }
 
     override init() {
         super.init()
         
-        // GIDSignIn.sharedInstance()?.uiDelegate = self
         GIDSignIn.sharedInstance()?.delegate = self
     }
     
@@ -107,7 +110,6 @@ class Auth: NSObject, GIDSignInDelegate {
     }
     
     fileprivate func googleLogin() {
-        GIDSignIn.sharedInstance()?.uiDelegate = delegate
         GIDSignIn.sharedInstance()?.signIn()
     }
     
