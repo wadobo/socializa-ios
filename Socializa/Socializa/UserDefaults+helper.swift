@@ -31,18 +31,27 @@ extension UserDefaults {
         removeObject(forKey: UserDefaultsKeys.accessToken.rawValue)
         removeObject(forKey: UserDefaultsKeys.refreshToken.rawValue)
         removeObject(forKey: UserDefaultsKeys.tokenType.rawValue)
+        removeObject(forKey: UserDefaultsKeys.platform.rawValue)
         synchronize()
     }
     
     func getAccessToken() -> SocializaBackend.AccessToken? {
-        guard let token = string(forKey: UserDefaultsKeys.accessToken.rawValue) else {
+        guard let accessToken = string(forKey: UserDefaultsKeys.accessToken.rawValue) else {
+            return nil
+        }
+
+        guard let tokenType = string(forKey: UserDefaultsKeys.tokenType.rawValue) else {
             return nil
         }
         
+        guard let refreshToken = string(forKey: UserDefaultsKeys.refreshToken.rawValue) else {
+            return nil
+        }
+
         return SocializaBackend.AccessToken(
-            access_token: token,
-            token_type: string(forKey: UserDefaultsKeys.tokenType.rawValue)!,
-            refresh_token: string(forKey: UserDefaultsKeys.refreshToken.rawValue)!
+            access_token: accessToken,
+            token_type: tokenType,
+            refresh_token: refreshToken
         )
     }
 
