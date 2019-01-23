@@ -14,7 +14,7 @@ protocol LoginViewControllerDelegate: class {
     func finishLoggingIn()
 }
 
-class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+class LoginViewController: UIViewController, AuthDelegate {
     let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
     let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))
     
@@ -26,62 +26,28 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDeleg
         view.backgroundColor = .white
         setupLayout()
         
-        GIDSignIn.sharedInstance()?.uiDelegate = self
-        GIDSignIn.sharedInstance()?.delegate = self
+        Auth.sharedInstance.delegate = self
+        
     }
     
     @objc func handleFacebookLogin() {
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self) { [unowned self] (result, error) in
-            if error != nil {
-                print("login error: \(error!)")
-                return
-            }
-        
-            guard let resultUnwrapped = result else {
-                return
-            }
-            
-            guard !resultUnwrapped.isCancelled else {
-                return
-            }
-            
-            self.socializaLogIn(tokenString: resultUnwrapped.token.tokenString, platform: .facebook)
-        }
+        Auth.sharedInstance.signIn(platform: .facebook, from: self)
         
     }
     
-    func socializaLogIn(tokenString: String, platform: SocializaBackend.Platform) {
-        SocializaBackend.shared.convertToken(tokenString, platform: platform) { [unowned self] (result, error) in
-            if let error = error {
-                self.showErrorAlert(message: "An error has occurred: \(error.localizedDescription)")
-                print(error)
-                return
-            }
-            
-            guard let result = result else {
-                self.showErrorAlert(message: "Empty response")
-                return
-            }
-
-            UserDefaults.standard.setAccessToken(token: result)
-            self.dismiss(animated: true, completion: nil)
-            self.delegate?.finishLoggingIn()
-        }
-    }
-
     @objc func handleGoogleLogin() {
-        GIDSignIn.sharedInstance()?.signIn()
+        Auth.sharedInstance.signIn(platform: .google, from: self)
     }
     
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+    func signIn(error: Error?) {
         if let error = error {
-            print("\(error.localizedDescription)")
+            showErrorAlert(message: error.localizedDescription)
             return
         }
         
-        socializaLogIn(tokenString: user.authentication.accessToken, platform: .google)
+        dismiss(animated: true, completion: nil)
+        self.delegate?.finishLoggingIn()
     }
-
 }
 
 

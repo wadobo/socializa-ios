@@ -16,6 +16,7 @@
 		1D18351721E7596C008A2B7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */; };
 		1D18352221E7596C008A2B7E /* SocializaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18352121E7596C008A2B7E /* SocializaTests.swift */; };
 		1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */; };
+		1DEA006721F8DBF60050910A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA006621F8DBF60050910A /* Auth.swift */; };
 		1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698621ECAF4200719CFA /* ImageButton.swift */; };
 		1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */; };
 		4AF791332431D9C54A89D009 /* Pods_Socializa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD1820EF7F8C3FE9D755287C /* Pods_Socializa.framework */; };
@@ -48,6 +49,7 @@
 		1D18352321E7596C008A2B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D4646E021EA00F400862D0C /* Socializa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Socializa.entitlements; sourceTree = "<group>"; };
 		1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaBackend.swift; sourceTree = "<group>"; };
+		1DEA006621F8DBF60050910A /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		1DFD698621ECAF4200719CFA /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+helper.swift"; sourceTree = "<group>"; };
 		2502A785E7B822B763C807E8 /* Pods-SocializaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SocializaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SocializaTests/Pods-SocializaTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
 				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
 				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
+				1DEA006621F8DBF60050910A /* Auth.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
@@ -363,6 +366,7 @@
 				1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */,
 				1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */,
 				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
+				1DEA006721F8DBF60050910A /* Auth.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

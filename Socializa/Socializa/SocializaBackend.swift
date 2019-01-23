@@ -8,6 +8,21 @@
 
 import Foundation
 
+enum SocializaError: Error {
+    case emptyResponse(url: URL)
+    case responseError(error: String, description: String)
+}
+
+extension SocializaError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case let .emptyResponse(url):
+            return "Empty response from url: \(url)"
+        case let .responseError(error, description):
+            return "Backend response error \(error) (\(description))"
+        }
+    }
+}
 
 final class SocializaBackend {
     struct Request: Encodable {
@@ -28,16 +43,6 @@ final class SocializaBackend {
         let error_description: String
     }
 
-    enum Platform: String {
-        case facebook
-        case google
-    }
-    
-    enum SocializaError: Error {
-        case emptyResponse(url: URL)
-        case responseError(error: String, description: String)
-    }
-    
     static let shared = SocializaBackend()
     
     fileprivate let baseURLString = "https://socializa.wadobo.com/api/v1.0/"
@@ -45,12 +50,12 @@ final class SocializaBackend {
     
     private init() {}
     
-    func convertToken(_ token: String, platform: Platform, completion: @escaping (AccessToken?, Error?) -> ()) {
+    func convertToken(_ token: String, platform: String, completion: @escaping (AccessToken?, Error?) -> ()) {
         let url = URL(string: baseURLString + "/auth/convert-token/")!
         let params = Request(
             client_id: iosClientId,
             grant_type: "convert_token",
-            backend: platform.rawValue,
+            backend: platform,
             token: token
         )
         

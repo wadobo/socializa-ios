@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         GIDSignIn.sharedInstance().clientID = "180959654042-h06php5v00tvo9ojfd7b2shdbt3vjgdr.apps.googleusercontent.com"
-        GIDSignIn.sharedInstance()?.signOut()
         
         return true
     }

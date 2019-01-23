@@ -13,6 +13,7 @@ extension UserDefaults {
         case accessToken
         case tokenType
         case refreshToken
+        case platform
     }
     
     func isLoggedIn() -> Bool {
@@ -30,17 +31,31 @@ extension UserDefaults {
         removeObject(forKey: UserDefaultsKeys.accessToken.rawValue)
         removeObject(forKey: UserDefaultsKeys.refreshToken.rawValue)
         removeObject(forKey: UserDefaultsKeys.tokenType.rawValue)
+        synchronize()
     }
     
     func getAccessToken() -> SocializaBackend.AccessToken? {
-        guard let at = string(forKey: UserDefaultsKeys.accessToken.rawValue) else {
+        guard let token = string(forKey: UserDefaultsKeys.accessToken.rawValue) else {
             return nil
         }
         
         return SocializaBackend.AccessToken(
-            access_token: at,
+            access_token: token,
             token_type: string(forKey: UserDefaultsKeys.tokenType.rawValue)!,
             refresh_token: string(forKey: UserDefaultsKeys.refreshToken.rawValue)!
         )
+    }
+
+    func setPlatform(platform: Auth.Platform) {
+        set(platform.rawValue, forKey: UserDefaultsKeys.platform.rawValue)
+        synchronize()
+    }
+    
+    func getPlatform() -> Auth.Platform? {
+        guard let platform = string(forKey: UserDefaultsKeys.platform.rawValue) else {
+            return nil
+        }
+        
+        return Auth.Platform(rawValue: platform)
     }
 }
