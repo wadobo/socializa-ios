@@ -116,11 +116,11 @@
 				1D02105321E9213100C93773 /* HomeViewController.swift */,
 				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
 				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
+				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
 				1DFD698621ECAF4200719CFA /* ImageButton.swift */,
-				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
 			);
 			path = Socializa;
 			sourceTree = "<group>";

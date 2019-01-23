@@ -8,12 +8,13 @@
 
 import UIKit
 import FBSDKLoginKit
+import GoogleSignIn
 
 protocol LoginViewControllerDelegate: class {
     func finishLoggingIn()
 }
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
     let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))
     
@@ -24,6 +25,9 @@ class LoginViewController: UIViewController {
         
         view.backgroundColor = .white
         setupLayout()
+        
+        GIDSignIn.sharedInstance()?.uiDelegate = self
+        GIDSignIn.sharedInstance()?.delegate = self
     }
     
     @objc func handleFacebookLogin() {
@@ -41,13 +45,13 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.socializaLogIn(tokenString: resultUnwrapped.token.tokenString)
+            self.socializaLogIn(tokenString: resultUnwrapped.token.tokenString, platform: .facebook)
         }
         
     }
     
-    func socializaLogIn(tokenString: String) {
-        SocializaBackend.shared.convertToken(tokenString, platform: .facebook) { [unowned self] (result, error) in
+    func socializaLogIn(tokenString: String, platform: SocializaBackend.Platform) {
+        SocializaBackend.shared.convertToken(tokenString, platform: platform) { [unowned self] (result, error) in
             if let error = error {
                 self.showErrorAlert(message: "An error has occurred: \(error.localizedDescription)")
                 print(error)
@@ -66,8 +70,18 @@ class LoginViewController: UIViewController {
     }
 
     @objc func handleGoogleLogin() {
-        print("google login")
+        GIDSignIn.sharedInstance()?.signIn()
     }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("\(error.localizedDescription)")
+            return
+        }
+        
+        socializaLogIn(tokenString: user.authentication.accessToken, platform: .google)
+    }
+
 }
 
 
