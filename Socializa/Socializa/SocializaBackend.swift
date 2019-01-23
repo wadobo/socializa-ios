@@ -10,26 +10,27 @@ import Foundation
 
 
 final class SocializaBackend {
-    struct SocializaRequest: Encodable {
+    struct Request: Encodable {
         var client_id: String
         var grant_type: String
         var backend: String
         var token: String
     }
     
-    struct SocializaAccessToken: Decodable {
+    struct AccessToken: Decodable {
         var access_token: String
         var token_type: String
         var refresh_token: String
     }
 
-    enum SocializaPlatform: String {
+    enum Platform: String {
         case facebook
         case google
     }
     
     enum SocializaError: Error {
         case emptyResponse(url: URL)
+        case responseError(error: String, description: String)
     }
     
     static let shared = SocializaBackend()
@@ -39,9 +40,9 @@ final class SocializaBackend {
     
     private init() {}
     
-    func convertToken(_ token: String, platform: SocializaPlatform, completion: @escaping (SocializaAccessToken?, Error?) -> ()) {
+    func convertToken(_ token: String, platform: Platform, completion: @escaping (AccessToken?, Error?) -> ()) {
         let url = URL(string: baseURLString + "/auth/convert-token/")!
-        let params = SocializaRequest(
+        let params = Request(
             client_id: iosClientId,
             grant_type: "convert_token",
             backend: platform.rawValue,
