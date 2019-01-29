@@ -13,17 +13,23 @@ import GoogleSignIn
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var coordinator: MainCoordinator?
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         window = UIWindow()
         
-        window?.rootViewController = MainNavigationController()
+        let nc = UINavigationController()
+        coordinator = MainCoordinator(navigationController: nc)
+        
+        window?.rootViewController = nc
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
         
         GIDSignIn.sharedInstance().clientID = "180959654042-h06php5v00tvo9ojfd7b2shdbt3vjgdr.apps.googleusercontent.com"
+        
+        coordinator?.start()
         
         return true
     }

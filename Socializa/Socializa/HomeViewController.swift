@@ -13,7 +13,7 @@ protocol HomeViewControllerDelegate: class {
 }
 
 class HomeViewController: UIViewController {
-    weak var delegate: HomeViewControllerDelegate?
+    weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc func didPressSignOut() {
-        delegate?.signedOut()
+        coordinator?.signOff()
     }
 }

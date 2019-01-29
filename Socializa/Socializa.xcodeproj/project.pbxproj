@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D02105221E90A6F00C93773 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105121E90A6F00C93773 /* MainNavigationController.swift */; };
 		1D02105421E9213100C93773 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105321E9213100C93773 /* HomeViewController.swift */; };
 		1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D02105521E925AE00C93773 /* UserDefaults+helper.swift */; };
 		1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18350C21E7596B008A2B7E /* AppDelegate.swift */; };
@@ -15,6 +14,8 @@
 		1D18351421E7596C008A2B7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351321E7596C008A2B7E /* Assets.xcassets */; };
 		1D18351721E7596C008A2B7E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */; };
 		1D18352221E7596C008A2B7E /* SocializaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D18352121E7596C008A2B7E /* SocializaTests.swift */; };
+		1D1A071D2200B90900EA9EDD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071C2200B90900EA9EDD /* Coordinator.swift */; };
+		1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */; };
 		1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */; };
 		1DEA006721F8DBF60050910A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA006621F8DBF60050910A /* Auth.swift */; };
 		1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698621ECAF4200719CFA /* ImageButton.swift */; };
@@ -35,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		0FA9FDDFC81655F2B86BCFF1 /* Pods-Socializa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Socializa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Socializa/Pods-Socializa.release.xcconfig"; sourceTree = "<group>"; };
-		1D02105121E90A6F00C93773 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		1D02105321E9213100C93773 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1D02105521E925AE00C93773 /* UserDefaults+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+helper.swift"; sourceTree = "<group>"; };
 		1D18350921E7596B008A2B7E /* Socializa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socializa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +47,8 @@
 		1D18351D21E7596C008A2B7E /* SocializaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SocializaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D18352121E7596C008A2B7E /* SocializaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaTests.swift; sourceTree = "<group>"; };
 		1D18352321E7596C008A2B7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D1A071C2200B90900EA9EDD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		1D4646E021EA00F400862D0C /* Socializa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Socializa.entitlements; sourceTree = "<group>"; };
 		1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaBackend.swift; sourceTree = "<group>"; };
 		1DEA006621F8DBF60050910A /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
@@ -112,14 +114,15 @@
 			isa = PBXGroup;
 			children = (
 				1D4646E021EA00F400862D0C /* Socializa.entitlements */,
+				1D1A071C2200B90900EA9EDD /* Coordinator.swift */,
 				1D18350C21E7596B008A2B7E /* AppDelegate.swift */,
-				1D02105121E90A6F00C93773 /* MainNavigationController.swift */,
+				1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */,
 				1D18350E21E7596B008A2B7E /* LoginViewController.swift */,
 				1D02105321E9213100C93773 /* HomeViewController.swift */,
 				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
+				1DEA006621F8DBF60050910A /* Auth.swift */,
 				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
 				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
-				1DEA006621F8DBF60050910A /* Auth.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
@@ -360,9 +363,10 @@
 			files = (
 				1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */,
 				1D18350F21E7596B008A2B7E /* LoginViewController.swift in Sources */,
+				1D1A071D2200B90900EA9EDD /* Coordinator.swift in Sources */,
 				1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */,
 				1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */,
-				1D02105221E90A6F00C93773 /* MainNavigationController.swift in Sources */,
+				1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */,
 				1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */,
 				1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */,
 				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
