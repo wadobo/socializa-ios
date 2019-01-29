@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FBSDKLoginKit
-import GoogleSignIn
 
 protocol LoginViewControllerDelegate: class {
     func finishLoggingIn()
@@ -18,7 +16,7 @@ class LoginViewController: UIViewController, AuthDelegate {
     let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
     let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))
     
-    weak var delegate: LoginViewControllerDelegate?
+    weak var coordinator: MainCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +43,7 @@ class LoginViewController: UIViewController, AuthDelegate {
             return
         }
         
-        dismiss(animated: true, completion: nil)
-        self.delegate?.finishLoggingIn()
+        self.coordinator?.signIn()
     }
 }
 
