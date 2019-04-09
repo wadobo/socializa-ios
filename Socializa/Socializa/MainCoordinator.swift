@@ -15,6 +15,9 @@ class MainCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        let vc = NotLoggedInViewController()
+        vc.coordinator = self
+        self.navigationController.pushViewController(vc, animated: false)
     }
     
     func start() {
@@ -25,33 +28,30 @@ class MainCoordinator: Coordinator {
         }
     }
     
+    func signIn() {
+        navigationController.dismiss(animated: true, completion: nil)
+        showHomeViewController()
+    }
+    
+    func signOff() {
+        Auth.sharedInstance.signOut()
+        showLoginViewController()
+        navigationController.popViewController(animated: true)
+    }
+
     fileprivate func isLoggedIn() -> Bool {
         return UserDefaults.standard.isLoggedIn()
     }
     
-    func showLoginViewController() {
+    fileprivate func showLoginViewController() {
         let loginController = LoginViewController()
         loginController.coordinator = self
         navigationController.present(loginController, animated: true, completion: nil)
     }
     
     fileprivate func showHomeViewController() {
-        let homeViewController = HomeViewController()
-        homeViewController.coordinator = self
-        navigationController.pushViewController(homeViewController, animated: true)
-    }
-    
-    func signIn() {
-        navigationController.dismiss(animated: true, completion: nil)
-        showHomeViewController()
-        guard let accessToken = UserDefaults.standard.getAccessToken() else {
-            return
-        }
-        print("access token: \(accessToken.access_token)")
-    }
-    
-    func signOff() {
-        Auth.sharedInstance.signOut()
-        showLoginViewController()
+        let vc = HomeViewController()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
     }
 }

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: class {
-    func finishLoggingIn()
-}
-
 class LoginViewController: UIViewController, AuthDelegate {
     let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
     let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))

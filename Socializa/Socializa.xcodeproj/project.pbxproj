@@ -17,6 +17,7 @@
 		1D1A071D2200B90900EA9EDD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071C2200B90900EA9EDD /* Coordinator.swift */; };
 		1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */; };
 		1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */; };
+		1DE0ED6F225CF8E800DDE8F6 /* NotLoggedInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE0ED6E225CF8E800DDE8F6 /* NotLoggedInViewController.swift */; };
 		1DEA006721F8DBF60050910A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA006621F8DBF60050910A /* Auth.swift */; };
 		1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698621ECAF4200719CFA /* ImageButton.swift */; };
 		1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */; };
@@ -51,6 +52,7 @@
 		1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		1D4646E021EA00F400862D0C /* Socializa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Socializa.entitlements; sourceTree = "<group>"; };
 		1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaBackend.swift; sourceTree = "<group>"; };
+		1DE0ED6E225CF8E800DDE8F6 /* NotLoggedInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotLoggedInViewController.swift; sourceTree = "<group>"; };
 		1DEA006621F8DBF60050910A /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		1DFD698621ECAF4200719CFA /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+helper.swift"; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				1D18350C21E7596B008A2B7E /* AppDelegate.swift */,
 				1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */,
 				1D18350E21E7596B008A2B7E /* LoginViewController.swift */,
+				1DE0ED6E225CF8E800DDE8F6 /* NotLoggedInViewController.swift */,
 				1D02105321E9213100C93773 /* HomeViewController.swift */,
 				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
 				1DEA006621F8DBF60050910A /* Auth.swift */,
@@ -370,6 +373,7 @@
 				1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */,
 				1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */,
 				1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */,
+				1DE0ED6F225CF8E800DDE8F6 /* NotLoggedInViewController.swift in Sources */,
 				1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */,
 				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
 				1DEA006721F8DBF60050910A /* Auth.swift in Sources */,
