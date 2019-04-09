@@ -205,6 +205,7 @@
 				TargetAttributes = {
 					1D18350821E7596B008A2B7E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -213,6 +214,7 @@
 					};
 					1D18351C21E7596C008A2B7E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 1D18350821E7596B008A2B7E;
 					};
 				};
@@ -286,7 +288,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Socializa/Pods-Socializa-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Socializa/Pods-Socializa-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
@@ -307,7 +309,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Socializa/Pods-Socializa-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Socializa/Pods-Socializa-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7D471C024701F779068EA8EC /* [CP] Check Pods Manifest.lock */ = {
@@ -340,7 +342,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Socializa/Pods-Socializa-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Socializa/Pods-Socializa-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -351,7 +353,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Socializa/Pods-Socializa-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Socializa/Pods-Socializa-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -536,7 +538,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.socializa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -557,7 +559,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.socializa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -578,7 +580,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.SocializaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Socializa.app/Socializa";
 			};
@@ -600,7 +602,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wadobo.SocializaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Socializa.app/Socializa";
 			};
