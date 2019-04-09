@@ -50,7 +50,7 @@ final class SocializaBackend {
     
     private init() {}
     
-    func convertToken(_ token: String, platform: String, completion: @escaping (AccessToken?, Error?) -> ()) {
+    func convertToken(_ token: String, platform: String, completion: @escaping (Result<AccessToken, Error>) -> ()) {
         let url = URL(string: baseURLString + "/auth/convert-token/")!
         let params = Request(
             client_id: iosClientId,
@@ -62,7 +62,7 @@ final class SocializaBackend {
         fetchData(url: url, params: params, completion: completion)
     }
     
-    fileprivate func fetchData<T: Encodable, U: Decodable>(url: URL, params: T, completion: @escaping (U?, Error?) -> ()) {
+    fileprivate func fetchData<T: Encodable, U: Decodable>(url: URL, params: T, completion: @escaping (Result<U, Error>) -> ()) {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -72,18 +72,18 @@ final class SocializaBackend {
         
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             if let error = error {
-                DispatchQueue.main.async { completion(nil, error) }
+                DispatchQueue.main.async { completion(.failure(error)) }
                 return
             }
             
             guard let responseData = data else {
-                DispatchQueue.main.async { completion(nil, SocializaError.emptyResponse(url: url)) }
+                DispatchQueue.main.async { completion(.failure(SocializaError.emptyResponse(url: url))) }
                 return
             }
             
             do {
                 let result = try JSONDecoder().decode(U.self, from: responseData)
-                DispatchQueue.main.async { completion(result, nil) }
+                DispatchQueue.main.async { completion(.success(result)) }
             } catch {
                 var fetchError = error
                 
@@ -93,7 +93,7 @@ final class SocializaBackend {
                 if let error = errorResponse {
                     fetchError = SocializaError.responseError(error: error.error, description: error.error_description)
                 }
-                DispatchQueue.main.async { completion(nil, fetchError) }
+                DispatchQueue.main.async { completion(.failure(fetchError)) }
             }
         }.resume()
     }
