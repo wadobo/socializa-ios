@@ -25,24 +25,21 @@ class LoginViewController: UIViewController, AuthDelegate {
         setupLayout()
         
         Auth.sharedInstance.delegate = self
-        
     }
     
     @objc func handleFacebookLogin() {
         Auth.sharedInstance.signIn(platform: .facebook, from: self)
-        
     }
     
     @objc func handleGoogleLogin() {
         Auth.sharedInstance.signIn(platform: .google, from: self)
     }
     
-    func signIn(error: Error?) {
-        if let error = error {
-            showErrorAlert(message: error.localizedDescription)
-            return
-        }
-        
+    func didSignIn(withError error: Error) {
+        showErrorAlert(message: error.localizedDescription)
+    }
+    
+    func didSignIn() {
         self.coordinator?.signIn()
     }
 }
