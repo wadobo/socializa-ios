@@ -92,20 +92,15 @@ class Auth: NSObject, GIDSignInDelegate {
     }
     
     fileprivate func socializaLogIn(tokenString: String, platform: Platform) {
-        SocializaBackend.shared.convertToken(tokenString, platform: platform.rawValue) { [unowned self] (result, error) in
-            if let error = error {
+        SocializaBackend.shared.convertToken(tokenString, platform: platform.rawValue) { [unowned self] (result) in
+            switch result {
+            case .failure(let error):
                 self.delegate?.signIn(error: error)
-                return
+            case .success(let result):
+                UserDefaults.standard.setAccessToken(token: result)
+                UserDefaults.standard.setPlatform(platform: platform)
+                self.delegate?.signIn(error: nil)
             }
-            
-            guard let result = result else {
-                self.delegate?.signIn(error: SignInError.EmptyResponse(description: "Empty response from socializa backend"))
-                return
-            }
-            
-            UserDefaults.standard.setAccessToken(token: result)
-            UserDefaults.standard.setPlatform(platform: platform)
-            self.delegate?.signIn(error: nil)
         }
     }
     

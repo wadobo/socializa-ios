@@ -21,8 +21,13 @@ class SocializaTests: XCTestCase {
     func testConvertToken() {
         let token = "EAAHnBOW3xZAABACzoKAZAS2TyT857hVrD8r8JZBLXtKRdFvk3KGFPfTaztGIZAUZBZAFIXfGqNGtGvQCyUNttcIaQUnzMJiTbK5HXs7x4F2jFrJGhO8JeKeZBmg2NWuikx5ZBmHSECZAcjJtSAziL4zGgaTPmtZA2tPoxlZAM02MjXBqv5Ly31Rgy7g498GNZAR3Y7PNa8nC5SDznht4yBRcbOxpscCYY14jGiwZD"
         
-        SocializaBackend.shared.convertToken(token, platform: .facebook) { (result, error) in
-            XCTAssertEqual(result!.access_token, "ACCESS_TOKEN")
+        SocializaBackend.shared.convertToken(token, platform: "facebook") { (result) in
+            switch result {
+            case .failure(let error):
+                XCTFail(error.localizedDescription)
+            case .success(let response):
+                XCTAssertEqual(response.access_token, "ACCESS_TOKEN")
+            }
         }
     }
 }
