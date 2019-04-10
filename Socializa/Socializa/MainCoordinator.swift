@@ -15,7 +15,7 @@ class MainCoordinator: Coordinator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        let vc = NotLoggedInViewController()
+        let vc = HomeViewController()
         vc.coordinator = self
         self.navigationController.pushViewController(vc, animated: false)
     }
@@ -23,20 +23,20 @@ class MainCoordinator: Coordinator {
     func start() {
         if !isLoggedIn() {
             showLoginViewController()
-        } else {
-            showHomeViewController()
         }
     }
     
     func signIn() {
         navigationController.dismiss(animated: true, completion: nil)
-        showHomeViewController()
     }
     
     func signOff() {
         Auth.sharedInstance.signOut()
         showLoginViewController()
-        navigationController.popViewController(animated: true)
+    }
+    
+    func didPressMoreMenu() {
+        print("menu pressed...")
     }
 
     fileprivate func isLoggedIn() -> Bool {
@@ -47,11 +47,5 @@ class MainCoordinator: Coordinator {
         let loginController = LoginViewController()
         loginController.coordinator = self
         navigationController.present(loginController, animated: true, completion: nil)
-    }
-    
-    fileprivate func showHomeViewController() {
-        let vc = HomeViewController()
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
     }
 }
