@@ -23,7 +23,8 @@ extension SignInError: LocalizedError {
 }
 
 protocol AuthDelegate: GIDSignInUIDelegate {
-    func signIn(error: Error?)
+    func didSignIn()
+    func didSignIn(withError: Error)
 }
 
 class Auth: NSObject, GIDSignInDelegate {
@@ -74,12 +75,12 @@ class Auth: NSObject, GIDSignInDelegate {
     fileprivate func facebookLogin(from: UIViewController) {
         FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: from) { [unowned self] (result, error) in
             if let error = error {
-                self.delegate?.signIn(error: error)
+                self.delegate?.didSignIn(withError: error)
                 return
             }
             
             guard let resultUnwrapped = result else {
-                self.delegate?.signIn(error: SignInError.EmptyResponse(description: "Empty response from facebook"))
+                self.delegate?.didSignIn(withError: SignInError.EmptyResponse(description: "Empty response from facebook"))
                 return
             }
             
@@ -95,11 +96,11 @@ class Auth: NSObject, GIDSignInDelegate {
         SocializaBackend.shared.convertToken(tokenString, platform: platform.rawValue) { [unowned self] (result) in
             switch result {
             case .failure(let error):
-                self.delegate?.signIn(error: error)
+                self.delegate?.didSignIn(withError: error)
             case .success(let result):
                 UserDefaults.standard.setAccessToken(token: result)
                 UserDefaults.standard.setPlatform(platform: platform)
-                self.delegate?.signIn(error: nil)
+                self.delegate?.didSignIn()
             }
         }
     }
@@ -110,7 +111,7 @@ class Auth: NSObject, GIDSignInDelegate {
     
     internal func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            self.delegate?.signIn(error: error)
+            self.delegate?.didSignIn(withError: error)
             return
         }
         

@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: class {
-    func finishLoggingIn()
-}
-
 class LoginViewController: UIViewController, AuthDelegate {
     let facebookLoginButton = ImageButton(image: UIImage(named: "facebook_icon.png")!, target: self, action: #selector(handleFacebookLogin))
     let googleLoginButton = ImageButton(image: UIImage(named: "google_icon.png")!, target: self, action: #selector(handleGoogleLogin))
@@ -25,24 +21,21 @@ class LoginViewController: UIViewController, AuthDelegate {
         setupLayout()
         
         Auth.sharedInstance.delegate = self
-        
     }
     
     @objc func handleFacebookLogin() {
         Auth.sharedInstance.signIn(platform: .facebook, from: self)
-        
     }
     
     @objc func handleGoogleLogin() {
         Auth.sharedInstance.signIn(platform: .google, from: self)
     }
     
-    func signIn(error: Error?) {
-        if let error = error {
-            showErrorAlert(message: error.localizedDescription)
-            return
-        }
-        
+    func didSignIn(withError error: Error) {
+        showErrorAlert(message: error.localizedDescription)
+    }
+    
+    func didSignIn() {
         self.coordinator?.signIn()
     }
 }

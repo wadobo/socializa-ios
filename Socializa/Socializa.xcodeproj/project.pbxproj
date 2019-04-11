@@ -17,6 +17,10 @@
 		1D1A071D2200B90900EA9EDD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071C2200B90900EA9EDD /* Coordinator.swift */; };
 		1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */; };
 		1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */; };
+		1D94B59E225E3C6D0085EA42 /* MoreMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D94B59D225E3C6D0085EA42 /* MoreMenu.swift */; };
+		1D94B5A1225E45DD0085EA42 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D94B5A0225E45DD0085EA42 /* BaseCell.swift */; };
+		1D94B5A3225E468F0085EA42 /* MoreMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D94B5A2225E468F0085EA42 /* MoreMenuCell.swift */; };
+		1D94B5A6225E49BD0085EA42 /* UIView+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D94B5A5225E49BD0085EA42 /* UIView+helper.swift */; };
 		1DEA006721F8DBF60050910A /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DEA006621F8DBF60050910A /* Auth.swift */; };
 		1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698621ECAF4200719CFA /* ImageButton.swift */; };
 		1DFD698921ECBCC600719CFA /* UIViewController+helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */; };
@@ -51,6 +55,10 @@
 		1D1A071E2200B95C00EA9EDD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		1D4646E021EA00F400862D0C /* Socializa.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Socializa.entitlements; sourceTree = "<group>"; };
 		1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocializaBackend.swift; sourceTree = "<group>"; };
+		1D94B59D225E3C6D0085EA42 /* MoreMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenu.swift; sourceTree = "<group>"; };
+		1D94B5A0225E45DD0085EA42 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		1D94B5A2225E468F0085EA42 /* MoreMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuCell.swift; sourceTree = "<group>"; };
+		1D94B5A5225E49BD0085EA42 /* UIView+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+helper.swift"; sourceTree = "<group>"; };
 		1DEA006621F8DBF60050910A /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		1DFD698621ECAF4200719CFA /* ImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButton.swift; sourceTree = "<group>"; };
 		1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+helper.swift"; sourceTree = "<group>"; };
@@ -113,6 +121,8 @@
 		1D18350B21E7596B008A2B7E /* Socializa */ = {
 			isa = PBXGroup;
 			children = (
+				1D94B5A4225E49830085EA42 /* Helpers */,
+				1D94B59F225E45C00085EA42 /* MoreMenu */,
 				1D4646E021EA00F400862D0C /* Socializa.entitlements */,
 				1D1A071C2200B90900EA9EDD /* Coordinator.swift */,
 				1D18350C21E7596B008A2B7E /* AppDelegate.swift */,
@@ -121,8 +131,6 @@
 				1D02105321E9213100C93773 /* HomeViewController.swift */,
 				1D4AEE6421EA5CA1007291BA /* SocializaBackend.swift */,
 				1DEA006621F8DBF60050910A /* Auth.swift */,
-				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
-				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
 				1D18351321E7596C008A2B7E /* Assets.xcassets */,
 				1D18351521E7596C008A2B7E /* LaunchScreen.storyboard */,
 				1D18351821E7596C008A2B7E /* Info.plist */,
@@ -138,6 +146,26 @@
 				1D18352321E7596C008A2B7E /* Info.plist */,
 			);
 			path = SocializaTests;
+			sourceTree = "<group>";
+		};
+		1D94B59F225E45C00085EA42 /* MoreMenu */ = {
+			isa = PBXGroup;
+			children = (
+				1D94B59D225E3C6D0085EA42 /* MoreMenu.swift */,
+				1D94B5A0225E45DD0085EA42 /* BaseCell.swift */,
+				1D94B5A2225E468F0085EA42 /* MoreMenuCell.swift */,
+			);
+			path = MoreMenu;
+			sourceTree = "<group>";
+		};
+		1D94B5A4225E49830085EA42 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1D02105521E925AE00C93773 /* UserDefaults+helper.swift */,
+				1DFD698821ECBCC600719CFA /* UIViewController+helper.swift */,
+				1D94B5A5225E49BD0085EA42 /* UIView+helper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		2D7B66B6F1719A3E13EEA055 /* Pods */ = {
@@ -368,11 +396,15 @@
 				1D1A071D2200B90900EA9EDD /* Coordinator.swift in Sources */,
 				1D02105621E925AE00C93773 /* UserDefaults+helper.swift in Sources */,
 				1D18350D21E7596B008A2B7E /* AppDelegate.swift in Sources */,
+				1D94B5A1225E45DD0085EA42 /* BaseCell.swift in Sources */,
+				1D94B5A6225E49BD0085EA42 /* UIView+helper.swift in Sources */,
 				1D1A071F2200B95C00EA9EDD /* MainCoordinator.swift in Sources */,
+				1D94B5A3225E468F0085EA42 /* MoreMenuCell.swift in Sources */,
 				1DFD698721ECAF4200719CFA /* ImageButton.swift in Sources */,
 				1D4AEE6521EA5CA1007291BA /* SocializaBackend.swift in Sources */,
 				1D02105421E9213100C93773 /* HomeViewController.swift in Sources */,
 				1DEA006721F8DBF60050910A /* Auth.swift in Sources */,
+				1D94B59E225E3C6D0085EA42 /* MoreMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

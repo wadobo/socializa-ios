@@ -12,18 +12,36 @@ protocol HomeViewControllerDelegate: class {
     func signedOut()
 }
 
-class HomeViewController: UIViewController {
+enum MenuOptionValue: String {
+    case SignOut = "Sign out"
+}
+
+class HomeViewController: UIViewController, MoreMenuDelegate {
     weak var coordinator: MainCoordinator?
+
+    lazy var moreMenu: MoreMenu = {
+        let signOut = MenuOption(name: .SignOut)
+        let menu = MoreMenu(options: [signOut])
+        menu.delegate = self
+        return menu
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "Socializa"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(didPressSignOut))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(didPressMenu))
         view.backgroundColor = .yellow
     }
     
-    @objc func didPressSignOut() {
-        coordinator?.signOff()
+    @objc func didPressMenu() {
+        moreMenu.show()
+    }
+    
+    func didSelectMenu(option: MenuOption) {
+        switch option.name {
+        case .SignOut:
+            coordinator?.signOff()
+        }
     }
 }
