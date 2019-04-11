@@ -12,15 +12,23 @@ protocol HomeViewControllerDelegate: class {
     func signedOut()
 }
 
+enum MenuOptionValue: String {
+    case SignOut = "Sign out"
+}
+
 class HomeViewController: UIViewController, MoreMenuDelegate {
     weak var coordinator: MainCoordinator?
 
-    let moreMenu = MoreMenu(options: ["Sign out"])
+    lazy var moreMenu: MoreMenu = {
+        let signOut = MenuOption(name: .SignOut)
+        let menu = MoreMenu(options: [signOut])
+        menu.delegate = self
+        return menu
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        moreMenu.delegate = self
         navigationItem.title = "Socializa"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "menu", style: .plain, target: self, action: #selector(didPressMenu))
         view.backgroundColor = .yellow
@@ -30,12 +38,10 @@ class HomeViewController: UIViewController, MoreMenuDelegate {
         moreMenu.show()
     }
     
-    func didSelectMenu(option: String) {
-        switch option {
-        case "Sign out":
+    func didSelectMenu(option: MenuOption) {
+        switch option.name {
+        case .SignOut:
             coordinator?.signOff()
-        default:
-            fatalError("unknown menu option")
         }
     }
 }

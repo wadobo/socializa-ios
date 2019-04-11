@@ -9,27 +9,35 @@
 import UIKit
 
 protocol MoreMenuDelegate {
-    func didSelectMenu(option: String)
+    func didSelectMenu(option: MenuOption)
+}
+
+class MenuOption: NSObject {
+    var name: MenuOptionValue
+    
+    init(name: MenuOptionValue) {
+        self.name = name
+    }
 }
 
 class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    let blackView = UIView()
+    var delegate: MoreMenuDelegate?
     
-    let collectionView: UICollectionView = {
+    fileprivate let blackView = UIView()
+    
+    fileprivate let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.white
         return cv
     }()
     
-    let cellId = "cellId"
-    let cellHeight: CGFloat = 50
+    fileprivate let cellId = "cellId"
+    fileprivate let cellHeight: CGFloat = 50
+    fileprivate let options: [MenuOption]
+    fileprivate var selectedOption: MenuOption?
     
-    let options: [String]
-    
-    var delegate: MoreMenuDelegate?
-    
-    init(options: [String]) {
+    init(options: [MenuOption]) {
         self.options = options
         
         super.init()
@@ -41,9 +49,12 @@ class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func show() {
         if let window = UIApplication.shared.keyWindow {
-            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            selectedOption = nil
             
+            blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissMenu)))
+            blackView.frame = window.frame
+            blackView.alpha = 0
             
             window.addSubview(blackView)
             window.addSubview(collectionView)
@@ -51,10 +62,7 @@ class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, 
             let height: CGFloat = cellHeight * CGFloat(options.count) + 50
             let y = window.frame.height - height
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: height)
-            
-            blackView.frame = window.frame
-            blackView.alpha = 0
-            
+
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut
                 , animations: { [unowned self] in
                     self.blackView.alpha = 1
@@ -63,12 +71,16 @@ class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, 
         }
     }
     
-    @objc func dismissMenu() {
-        UIView.animate(withDuration: 0.5) { [unowned self] in
+    @objc fileprivate func dismissMenu() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: { [unowned self] in
             self.blackView.alpha = 0
             
             if let window = UIApplication.shared.keyWindow {
                 self.collectionView.frame = CGRect(x: 0, y: window.frame.height, width: self.collectionView.frame.width, height: self.collectionView.frame.height)
+            }
+        }) { [unowned self] (isCompleted) in
+            if let option = self.selectedOption {
+                self.delegate?.didSelectMenu(option: option)
             }
         }
     }
@@ -80,7 +92,7 @@ class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MoreMenuCell
         
-        cell.caption = options[indexPath.item]
+        cell.caption = options[indexPath.item].name.rawValue
         
         return cell
     }
@@ -94,9 +106,7 @@ class MoreMenu: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedOption = options[indexPath.item]
         dismissMenu()
-        delegate?.didSelectMenu(option: options[indexPath.item])
     }
-    
-    
 }
